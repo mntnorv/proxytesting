@@ -1,0 +1,8 @@
+div {
+  height: 16px;
+  width: 16px;
+}
+
+#remote-css-background {
+  background-image: url(../img/check.png);
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Proxy test</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css" />
+
+  <!-- JS libraries -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Inline styles -->
+  <style type="text/css">
+    #embedded-css-background {
+      background-image: url(img/check.png);
+    }
+  </style>
+
+  <!-- Inline JS -->
+  <script type="text/javascript">
+    $(function() {
+      $('#embedded-jquery-img').attr('src', 'img/check.png');
+      document.getElementById('embedded-js-img').src = 'img/check.png';
+    });
+  </script>
+</head>
+<body>
+  <table>
+    <tr>
+      <td>Remote CSS background</td>
+      <td><div id="remote-css-background"></div></td>
+    </tr>
+    <tr>
+      <td>Embedded CSS background</td>
+      <td><div id="embedded-css-background"></div></td>
+    </tr>
+    <tr>
+      <td>Inline CSS background</td>
+      <td><div style="background-image: url(img/check.png);"></div></td>
+    </tr>
+    <tr>
+      <td>Remote JS img (jQuery)</td>
+      <td><img id="remote-jquery-img" /></td>
+    </tr>
+    <tr>
+      <td>Embedded JS img (jQuery)</td>
+      <td><img id="embedded-jquery-img" /></td>
+    </tr>
+    <tr>
+      <td>Remote JS img (vanilla)</td>
+      <td><img id="remote-js-img" /></td>
+    </tr>
+    <tr>
+      <td>Embedded JS img (vanilla)</td>
+      <td><img id="embedded-js-img" /></td>
+    </tr>
+  </table>
+</body>
+</html>
