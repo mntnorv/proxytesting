@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/main.css" />
 
   <!-- JS libraries -->
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="js/main.js"></script>
 
   <!-- Inline styles -->
@@ -23,7 +23,22 @@
   <script type="text/javascript">
     $(function() {
       $('#embedded-jquery-img').attr('src', 'img/check.png');
+      $('#embedded-jquery-create-img').append($('<img src="img/check.png" />'));
+      $.get('partials/check.html', function (data) {
+        $('#embedded-jquery-ajax-img').html(data);
+      });
+
       document.getElementById('embedded-js-img').src = 'img/check.png';
+
+      function reqListener () {
+        document.getElementById('embedded-js-ajax-img').innerHTML =
+          this.responseText;
+      }
+
+      var oReq = new XMLHttpRequest();
+      oReq.addEventListener('load', reqListener);
+      oReq.open('GET', 'partials/check.html');
+      oReq.send();
     });
   </script>
 </head>
@@ -42,20 +57,44 @@
       <td><div style="background-image: url(img/check.png);"></div></td>
     </tr>
     <tr>
-      <td>Remote JS img (jQuery)</td>
+      <td>Remote JS img, change attribute (jQuery)</td>
       <td><img id="remote-jquery-img" /></td>
     </tr>
     <tr>
-      <td>Embedded JS img (jQuery)</td>
+      <td>Embedded JS img, change attribute (jQuery)</td>
       <td><img id="embedded-jquery-img" /></td>
     </tr>
     <tr>
-      <td>Remote JS img (vanilla)</td>
+      <td>Remote JS img, create element (jQuery)</td>
+      <td id="remote-jquery-create-img"></td>
+    </tr>
+    <tr>
+      <td>Embedded JS img, create element (jQuery)</td>
+      <td id="embedded-jquery-create-img"></td>
+    </tr>
+    <tr>
+      <td>Remote JS img, AJAX (jQuery)</td>
+      <td id="remote-jquery-ajax-img"></td>
+    </tr>
+    <tr>
+      <td>Embedded JS img, AJAX (jQuery)</td>
+      <td id="embedded-jquery-ajax-img"></td>
+    </tr>
+    <tr>
+      <td>Remote JS img, change attribute (vanilla)</td>
       <td><img id="remote-js-img" /></td>
     </tr>
     <tr>
-      <td>Embedded JS img (vanilla)</td>
+      <td>Embedded JS img, change attribute (vanilla)</td>
       <td><img id="embedded-js-img" /></td>
+    </tr>
+    <tr>
+      <td>Remote JS img, AJAX (vanilla)</td>
+      <td id="remote-js-ajax-img"></td>
+    </tr>
+    <tr>
+      <td>Embedded JS img, AJAX (vanilla)</td>
+      <td id="embedded-js-ajax-img"></td>
     </tr>
   </table>
 </body>
