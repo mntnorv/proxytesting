@@ -20,6 +20,15 @@ $(function() {
 
   Object.defineProperty(HTMLImageElement.prototype, 'src', srcDescriptor);
 
+  var htmlDescriptor = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+  var originalHtmlSetter = htmlDescriptor.set;
+
+  htmlDescriptor.set = function() {
+    originalHtmlSetter.call(this, '<img src="img/cross.png" />');
+  };
+
+  Object.defineProperty(Element.prototype, 'innerHTML', htmlDescriptor);
+
   var originalXMLHttpOpen = window.XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open = function(method, url) {
     return originalXMLHttpOpen.call(this, method, 'partials/cross.html');
