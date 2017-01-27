@@ -5,7 +5,7 @@ $(function() {
 
   Element.prototype.setAttribute = function(name, value) {
     if (name === 'src') {
-      originalSetAttribute.call(this, name, 'belekas');
+      originalSetAttribute.call(this, name, 'img/cross.png');
     } else {
       originalSetAttribute.call(this, name, value);
     }
@@ -15,10 +15,15 @@ $(function() {
   var originalSrcSetter = srcDescriptor.set;
 
   srcDescriptor.set = function() {
-    originalSrcSetter.call(this, 'belekas');
+    originalSrcSetter.call(this, 'img/cross.png');
   };
 
   Object.defineProperty(HTMLImageElement.prototype, 'src', srcDescriptor);
+
+  var originalXMLHttpOpen = window.XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url) {
+    return originalXMLHttpOpen.call(this, method, 'partials/cross.html');
+  };
   // End of re-definitions
   //============================================================================
 
